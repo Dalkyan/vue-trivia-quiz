@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100.0px"
+   height="100.0px"
+   viewBox="0 0 100.0 100.0"
+   version="1.1"
+   id="SVGRoot"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs824">
+    <rect
+       x="10"
+       y="20"
+       width="60"
+       height="55"
+       id="rect4835" />
+    <rect
+       x="10"
+       y="20"
+       width="60"
+       height="55"
+       id="rect4835-1" />
+    <rect
+       x="10"
+       y="20"
+       width="60"
+       height="55"
+       id="rect4835-8" />
+    <rect
+       x="10"
+       y="20"
+       width="60"
+       height="55"
+       id="rect4835-3" />
+    <rect
+       x="10"
+       y="20"
+       width="60"
+       height="55"
+       id="rect4835-9" />
+  </defs>
+  <g
+     id="layer1">
+    <text
+       xml:space="preserve"
+       id="text4833"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4835);fill:#008080;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       transform="matrix(1.5761353,0,0,2.1272397,15.189263,-52.73167)"><tspan
+         x="10"
+         y="55.769231"
+         id="tspan12788"><tspan
+           style="font-family:Rubik;-inkscape-font-specification:Rubik"
+           id="tspan12786">?</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text4833-8"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4835-8);fill:#008080;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       transform="matrix(1.5224298,-0.40793383,0.55057015,2.0547558,-29.944775,-21.465582)"><tspan
+         x="10"
+         y="55.769231"
+         id="tspan12792"><tspan
+           style="font-family:Rubik;-inkscape-font-specification:Rubik"
+           id="tspan12790">?</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text4833-1"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4835-9);fill:#008080;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       transform="matrix(1.5224298,0.40793383,-0.55057015,2.0547558,65.002467,-38.588864)"><tspan
+         x="10"
+         y="55.769231"
+         id="tspan12796"><tspan
+           style="font-family:Rubik;-inkscape-font-specification:Rubik"
+           id="tspan12794">?</tspan></tspan></text>
+  </g>
+</svg>
