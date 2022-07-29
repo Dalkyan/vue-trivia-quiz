@@ -1,7 +1,7 @@
 <template>
   <div class="quiz">
     <div class="flex-center flex-col m-6">
-    <h2>Answered {{answeredCounter}} out of {{myNumber}}</h2>
+      <h2>Answered {{ answeredCounter }} out of {{ myNumber }}</h2>
       <div class="w-1/2 bg-indigo-200 rounded-full h-2.5 mb-4">
         <div
           class="bg-orange-500 h-2.5 rounded-full"
@@ -26,11 +26,21 @@
         </button>
       </template>
     </div>
-    <button disabled class="rounded p-2 border-2 border-indigo-800 bg-orange-500 text-indigo-800 disabled:bg-indigo-100 disabled:text-indigo-300 disabled:border-indigo-300">Submit your answers</button>
+    <button
+      disabled
+      class="rounded p-2 border-2 border-indigo-800 bg-orange-500 text-indigo-800 disabled:bg-indigo-100 disabled:text-indigo-300 disabled:border-indigo-300"
+    >
+      Submit your answers
+    </button>
   </div>
+  <Suspense>
+    <AsyncQuiz></AsyncQuiz>
+    <template #fallback>Loading...</template>
+  </Suspense>
 </template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
+import AsyncQuiz from "@/components/AsyncQuiz.vue";
 
 const myNumber = 10;
 const answeredCounter = ref(2);

@@ -1,0 +1,122 @@
+{
+    "results": [
+      {
+        "category": "Geography",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "What is the capital of the American state of Arizona?",
+        "correct_answer": "Phoenix",
+        "incorrect_answers": [
+          "Montgomery",
+          "Tallahassee",
+          "Raleigh"
+        ]
+      },
+      {
+        "category": "Science & Nature",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "Which element has the chemical symbol &#039;Fe&#039;?",
+        "correct_answer": "Iron",
+        "incorrect_answers": [
+          "Gold",
+          "Silver",
+          "Tin"
+        ]
+      },
+      {
+        "category": "Entertainment: Video Games",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "What is the most expensive weapon in Counter-Strike: Global Offensive?",
+        "correct_answer": "Scar-20/G3SG1",
+        "incorrect_answers": [
+          "M4A1",
+          "AWP",
+          "R8 Revolver"
+        ]
+      },
+      {
+        "category": "Entertainment: Video Games",
+        "type": "boolean",
+        "difficulty": "easy",
+        "question": "There are 6 legendary cards in &quot;Clash Royale&quot;.",
+        "correct_answer": "False",
+        "incorrect_answers": [
+          "True"
+        ]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "hard",
+        "question": "How many members are there in the idol group &quot;&micro;&#039;s&quot;?",
+        "correct_answer": "9",
+        "incorrect_answers": [
+          "48",
+          "6",
+          "3"
+        ]
+      },
+      {
+        "category": "History",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "The creator of the Enigma Cypher and Machine was of what nationality?",
+        "correct_answer": "German",
+        "incorrect_answers": [
+          "American",
+          "British",
+          "Polish"
+        ]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "Which Twitch streamer is the vocalist for Red Vox?",
+        "correct_answer": "Vinesauce",
+        "incorrect_answers": [
+          "The8BitDrummer",
+          "LIRIK",
+          "Sodapoppin"
+        ]
+      },
+      {
+        "category": "Entertainment: Video Games",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "Which of the following characters from the game &quot;Overwatch&quot; was revealed to be homosexual in December of 2016?",
+        "correct_answer": "Tracer",
+        "incorrect_answers": [
+          "Widowmaker",
+          "Sombra",
+          "Symmetra"
+        ]
+      },
+      {
+        "category": "Entertainment: Video Games",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "Which one of these characters was first introduced in Sonic Boom: Rise of Lyric?",
+        "correct_answer": "Sticks the Badger",
+        "incorrect_answers": [
+          "Mighty the Armadillo",
+          "Espio the Chameleon",
+          "Rouge the Bat"
+        ]
+      },
+      {
+        "category": "Science: Gadgets",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "Out of all of the NASA Space Shuttles, which 2 have been destroyed in disasters?",
+        "correct_answer": "Challenger and Columbia",
+        "incorrect_answers": [
+          "Enterprise and Atlantis",
+          "Discovery and Endeavour",
+          "None of the Above"
+        ]
+      }
+    ]
+  }
