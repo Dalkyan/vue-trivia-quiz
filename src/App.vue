@@ -4,8 +4,8 @@ import { RouterLink, RouterView } from "vue-router";
 
 <template>
   <div class="h-screen">
-    <header class="mt-4 mb-4">
-      <h1 class="text-4xl mb-4 text-indigo-800 font-bold">Trivia Quiz</h1>
+    <header class="md:mt-4 md:mb-4">
+      <h1 class="md:text-4xl lg:mb-4 text-indigo-800 font-bold">Trivia Quiz</h1>
       <hr />
     </header>
     <RouterView />
@@ -15,7 +15,6 @@ import { RouterLink, RouterView } from "vue-router";
 <style scoped>
 header {
   line-height: 1.5;
-  max-height: 100vh;
 }
 
 nav {

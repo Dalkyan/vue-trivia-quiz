@@ -1,17 +1,17 @@
 <template>
   <div class="quiz">
-    <div class="flex-center flex-col m-6">
+    <div class="flex-center flex-col">
       <h2>Answered {{ answeredCounter }} out of {{ array.length }}</h2>
       <div class="w-1/2 bg-indigo-200 rounded-full h-2.5 mb-4">
         <div
           class="bg-orange-500 h-2.5 rounded-full"
-          :style="progressBar"
+          :style="progressBar(answeredCounter)"
         ></div>
       </div>
       <h2 class="text-xl">Question number {{ questionNumber }}:</h2>
     </div>
     <div>
-      <h3 class="text-2xl m-6">
+      <h3 class="text-xl lg:text-2xl m-2 lg:m-6">
         {{ decodeURIComponent(array[questionNumber - 1].question) }}
       </h3>
     </div>
@@ -27,7 +27,7 @@
           {{ answerLetter[index] }}
         </div> -->
         <button
-          class="btn w-3/4 min-w-fit rounded-full ml-0"
+          class="btn w-3/4 rounded-full ml-0"
           :class="{ orange: index + 1 == selectedAnswer[questionNumber - 1] }"
           @click="selectAnswer(index)"
         >
@@ -38,8 +38,11 @@
     <div class="flex-center mt-8">
       <template v-for="(i, index) in array.length" :key="index">
         <button
-          class="rounded w-8 md:m-2 border-2 bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100"
-          :class="{ orange: selectedAnswer[index] }"
+          class="rounded w-8 md:m-2 border-2 bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
+          :class="{
+            orange: selectedAnswer[index],
+            'active-question': questionNumber == index + 1,
+          }"
           @click="questionNumber = index + 1"
         >
           {{ i }}
@@ -66,7 +69,6 @@ const quizStore = useQuizStore();
 const { answeredCounter, questionNumber, selectedAnswer } = storeToRefs(
   useQuizStore()
 );
-// const answeredCounter = ref(quizStore.answeredCounter);
 //async function to fetch data from API
 const url = "https://opentdb.com/api.php?amount=10&encode=url3986";
 const fetchQuiz = async () => {
@@ -90,16 +92,10 @@ function getIncorrectAnswers(index: number): string[] {
   return array.value[index].incorrect_answers;
 }
 
-const badAnswers0 = getIncorrectAnswers(0);
-const correct_answer0 = getCorrectAnswer(0);
-const allAnswers0 = [...badAnswers0, correct_answer0].sort();
 const allAnswers = Array(10);
 for (let i = 0; i < allAnswers.length; i++) {
   allAnswers[i] = [...getIncorrectAnswers(i), getCorrectAnswer(i)];
 }
-
-[...badAnswers0, correct_answer0];
-console.log(allAnswers0);
 
 interface quizResponse {
   results: string[];
@@ -116,13 +112,18 @@ function selectAnswer(number: number) {
   );
 }
 //progressBar
-const progressBar = reactive({
-  width: answeredCounter.value + "0%",
-});
+const progressBar = (counter: number) => {
+  return reactive({
+    width: counter + "0%",
+  });
+};
 </script>
 
 <style scoped>
 .orange {
   @apply bg-orange-500 hover:bg-orange-800;
+}
+.active-question {
+  @apply border-indigo-800 scale-125;
 }
 </style>

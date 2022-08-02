@@ -12,9 +12,16 @@
     .flex-center{
       @apply flex items-center justify-center;
     }
+    .quiz{
+      @apply flex flex-col m-0 content-between
+    }
   }
 
+  *{
+    transition: all 200ms ease-in-out;
+  }
   body{
     max-width: 1024px;
     margin: auto;
+    max-height: 100vh;
   }
