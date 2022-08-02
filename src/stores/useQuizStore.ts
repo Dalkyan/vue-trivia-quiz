@@ -4,10 +4,15 @@ export const useQuizStore = defineStore({
   id: "quiz",
   state: () => ({
     answeredCounter: 0,
-    isAnswered: Array(10).fill(false),
+    questionNumber: 1,
+    selectedAnswer: Array(10).fill(0),
   }),
   getters: {
     getAnsweredCounter: (state) => state.answeredCounter,
   },
-  actions: {},
+  actions: {
+    incrementCounter(){
+      this.answeredCounter++;
+    }
+  },
 });
