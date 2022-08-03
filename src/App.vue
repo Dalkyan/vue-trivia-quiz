@@ -7,12 +7,14 @@ route.name == "home";
 <template>
   <div class="h-screen grid grid-rows-[min-content_auto]">
     <header class="md:mt-4">
-      <h1
-        class="text-xl md:text-4xl lg:mb-4 text-indigo-800 font-bold"
-        :class="{ huge: route.name === 'home' }"
+      <router-link to="/"
+        ><h1
+          class="text-xl md:text-4xl lg:mb-4 text-indigo-800 font-bold"
+          :class="{ huge: route.name === 'home' }"
+        >
+          Trivia Quiz
+        </h1></router-link
       >
-        Trivia Quiz
-      </h1>
       <hr />
     </header>
     <RouterView />

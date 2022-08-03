@@ -1,18 +1,10 @@
 import { defineStore } from "pinia";
 
-export const useQuizStore = defineStore({
+export const useResultsStore = defineStore({
   id: "results",
   state: () => ({
-    answeredCounter: 0,
-    questionNumber: 1,
-    selectedAnswer: Array(10).fill(0),
+    answers: [""],
   }),
-  getters: {
-    getAnsweredCounter: (state) => state.answeredCounter,
-  },
-  actions: {
-    incrementCounter(){
-      this.answeredCounter++;
-    }
-  },
+  getters: {},
+  actions: {},
 });

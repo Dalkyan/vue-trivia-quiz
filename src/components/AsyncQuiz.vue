@@ -23,11 +23,6 @@
         v-for="(oneAnswer, index) in allAnswers[questionNumber - 1]"
         :key="index"
       >
-        <!-- <div
-          class="w-1/4 min-w-max btn text-4xl rounded-l-full rounded-r-none mr-0 bg-indigo-800 text-indigo-100"
-        >
-          {{ answerLetter[index] }}
-        </div> -->
         <button
           class="btn w-3/4 rounded-full ml-0"
           :class="{ orange: index + 1 == selectedAnswer[questionNumber - 1] }"
@@ -38,6 +33,13 @@
       </div>
     </div>
     <div class="flex-center mt-8">
+      <button
+        class="uppercase px-2 rounded-l-full border-2 bg-indigo-500 text-orange-300 hover:bg-indigo-800"
+        :class="{ disabled: questionNumber <= 1 }"
+        @click="questionNumber--"
+      >
+        Prev
+      </button>
       <template v-for="(i, index) in array.length" :key="index">
         <button
           class="rounded-lg w-8 md:m-2 border-2 bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
@@ -50,6 +52,13 @@
           {{ i }}
         </button>
       </template>
+      <button
+        class="uppercase px-2 rounded-r-full border-2 bg-indigo-500 text-orange-300 hover:bg-indigo-800"
+        :class="{ disabled: questionNumber >= array.length }"
+        @click="questionNumber++"
+      >
+        Next
+      </button>
     </div>
     <router-link
       to="/summary"
@@ -129,9 +138,11 @@ const progressBar = (counter: number) => {
   opacity: 0.5;
   pointer-events: none;
 }
+
 .orange {
   @apply bg-orange-500 hover:bg-orange-800;
 }
+
 .active-question {
   @apply border-indigo-800 scale-125;
 }
