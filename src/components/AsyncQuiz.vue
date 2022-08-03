@@ -20,23 +20,24 @@
             {{ decodeURIComponent(array[questionNumber - 1].question) }}
           </h3>
         </div>
-      
-    <div class="flex-center flex-col flex-wrap">
-      <div
-        class="flex-center w-10/12"
-        v-for="(oneAnswer, index) in allAnswers[questionNumber - 1]"
-        :key="index"
-      >
-        <button
-          class="btn w-3/4 rounded-full ml-0"
-          :class="{ orange: index + 1 == selectedAnswer[questionNumber - 1] }"
-          @click="selectAnswer(index)"
-        >
-          {{ decodeURIComponent(oneAnswer) }}
-        </button>
+        <div class="flex-center flex-col flex-wrap">
+          <div
+            class="flex-center w-10/12"
+            v-for="(oneAnswer, index) in allAnswers[questionNumber - 1]"
+            :key="index"
+          >
+            <button
+              class="btn w-3/4 rounded-full ml-0"
+              :class="{
+                orange: index + 1 === selectedAnswer[questionNumber - 1],
+              }"
+              @click="selectAnswer(index)"
+            >
+              {{ decodeURIComponent(oneAnswer) }}
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-</div>
     </transition>
     <div class="flex-center mt-8">
       <button
@@ -51,7 +52,7 @@
           class="rounded-lg w-8 md:m-2 border-2 bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
           :class="{
             orange: selectedAnswer[index],
-            'active-question': questionNumber == index + 1,
+            'active-question': questionNumber === index + 1,
           }"
           @click="questionNumber = index + 1"
         >
@@ -68,8 +69,9 @@
     </div>
     <router-link
       to="/summary"
+      @click="submitAnswers()"
       :class="{ disabled: answeredCounter < 10 }"
-      class="rounded-2xl self-center m-2 p-2 border-2 text-lg border-indigo-800 bg-orange-500 text-indigo-800 disabled:bg-indigo-100 disabled:text-indigo-300 disabled:border-indigo-300"
+      class="rounded-2xl self-center m-2 p-2 border-2 text-lg border-indigo-800 bg-orange-500 text-indigo-800"
     >
       Submit your answers</router-link
     >
@@ -83,9 +85,13 @@ import { reactive, ref } from "vue";
 
 // const answerLetter = ["A", "B", "C", "D"];
 const quizStore = useQuizStore();
-const { answeredCounter, questionNumber, selectedAnswer } = storeToRefs(
-  useQuizStore()
-);
+const {
+  answeredCounter,
+  questionNumber,
+  selectedAnswer,
+  myAnswers,
+  correctAnswers,
+} = storeToRefs(useQuizStore());
 //async function to fetch data from API
 const url = "https://opentdb.com/api.php?amount=10&encode=url3986";
 const fetchQuiz = async () => {
@@ -111,15 +117,12 @@ function getIncorrectAnswers(index: number): string[] {
 }
 
 const allAnswers = Array(10);
-const correctAnswers = Array(10);
+const localCorrectAnswers = Array(10);
 for (let i = 0; i < allAnswers.length; i++) {
   allAnswers[i] = [...getIncorrectAnswers(i), getCorrectAnswer(i)];
-  correctAnswers[i] = [getCorrectAnswer(i)];
+  localCorrectAnswers[i] = [getCorrectAnswer(i)];
 }
-
-interface quizResponse {
-  results: string[];
-}
+correctAnswers.value = localCorrectAnswers;
 
 function selectAnswer(number: number) {
   console.log(allAnswers[questionNumber.value - 1][number]);
@@ -127,9 +130,22 @@ function selectAnswer(number: number) {
     quizStore.incrementCounter();
   }
   console.log(
-    "Selected answer:",
+    " For question number:",
+    questionNumber.value,
+    " selected answer is:",
     (selectedAnswer.value[questionNumber.value - 1] = number + 1)
   );
+  myAnswers.value[questionNumber.value - 1] =
+    allAnswers[questionNumber.value - 1][number];
+}
+function submitAnswers() {
+  console.log("Answers submitted");
+  console.log(decodeURIComponent(myAnswers.value.toString()));
+  console.log("Correct answers:");
+  console.log(decodeURIComponent(correctAnswers.value.toString()));
+  console.log(decodeURIComponent(localCorrectAnswers.toString()));
+
+
 }
 //progressBar
 const progressBar = (counter: number) => {
