@@ -91,6 +91,7 @@ const {
   selectedAnswer,
   myAnswers,
   correctAnswers,
+  questionsArray,
 } = storeToRefs(useQuizStore());
 //async function to fetch data from API
 const url = "https://opentdb.com/api.php?amount=10&encode=url3986";
@@ -111,9 +112,14 @@ console.log(array.value);
 function getCorrectAnswer(index: number): string {
   return array.value[index].correct_answer;
 }
-
 function getIncorrectAnswers(index: number): string[] {
   return array.value[index].incorrect_answers;
+}
+function getQuestion(index: number): string {
+  return array.value[index].question;
+}
+for (let index = 0; index < array.value.length; index++) {
+  questionsArray.value[index] = getQuestion(index);
 }
 
 const allAnswers = Array(10);
@@ -144,8 +150,6 @@ function submitAnswers() {
   console.log("Correct answers:");
   console.log(decodeURIComponent(correctAnswers.value.toString()));
   console.log(decodeURIComponent(localCorrectAnswers.toString()));
-
-
 }
 //progressBar
 const progressBar = (counter: number) => {
