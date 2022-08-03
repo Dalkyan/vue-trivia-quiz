@@ -1,27 +1,17 @@
 <template>
-  <Suspense>
-    <AsyncQuiz></AsyncQuiz>
-    <template #fallback>
-     <h2>Loading...</h2>
-    </template>
-  </Suspense>
+  <main class="grid">
+    <Suspense>
+      <AsyncQuiz></AsyncQuiz>
+      <template #fallback>
+        <div class="self-center">
+          <h2 class="text-8xl animate-vertical-spinner">?</h2>
+          <h2 class="text-4xl">Loading...</h2>
+        </div>
+      </template>
+    </Suspense>
+  </main>
 </template>
 <script setup lang="ts">
-import { reactive, ref } from "vue";
 import AsyncQuiz from "@/components/AsyncQuiz.vue";
-
-const answeredCounter = ref(2);
-const isAnswered = ref(false);
-const progressBar = reactive({
-  width: answeredCounter.value + "0%",
-});
-
-function toggle() {
-  return (isAnswered.value = !isAnswered.value);
-}
 </script>
-<style>
-.orange {
-  @apply bg-orange-500;
-}
-</style>
+<style></style>

@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main class="flex-center max-h-screen">
+  <main class="self-center">
     <RouterLink to="/quiz">
       <button
         class="h-48 w-48 m-auto rounded-full text-xl font-bold border-4 bg-orange-500 text-indigo-800 border-indigo-800 hover:bg-indigo-800 hover:text-orange-500 hover:border-orange-500"

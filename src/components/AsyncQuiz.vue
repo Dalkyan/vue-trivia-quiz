@@ -1,8 +1,10 @@
 <template>
-  <div class="quiz">
+  <div class="grid">
     <div class="flex justify-center align-justify flex-col">
       <h2>Answered {{ answeredCounter }} out of {{ array.length }}</h2>
-      <div class="place-self-center w-1/2 bg-indigo-200 rounded-full h-2.5 mb-4">
+      <div
+        class="place-self-center w-1/2 bg-indigo-200 rounded-full h-2.5 mb-4"
+      >
         <div
           class="bg-orange-500 h-2.5 rounded-full"
           :style="progressBar(answeredCounter)"
@@ -38,7 +40,7 @@
     <div class="flex-center mt-8">
       <template v-for="(i, index) in array.length" :key="index">
         <button
-          class="rounded w-8 md:m-2 border-2 bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
+          class="rounded-lg w-8 md:m-2 border-2 bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
           :class="{
             orange: selectedAnswer[index],
             'active-question': questionNumber == index + 1,
@@ -49,18 +51,18 @@
         </button>
       </template>
     </div>
-    <router-link to="/summary"
-        :class="{ disabled: answeredCounter < 10 }"
-        class="rounded-2xl m-2 p-2 border-2 text-lg border-indigo-800 bg-orange-500 text-indigo-800 disabled:bg-indigo-100 disabled:text-indigo-300 disabled:border-indigo-300"
-      >
-        Submit your answers</router-link
+    <router-link
+      to="/summary"
+      :class="{ disabled: answeredCounter < 10 }"
+      class="rounded-2xl self-center m-2 p-2 border-2 text-lg border-indigo-800 bg-orange-500 text-indigo-800 disabled:bg-indigo-100 disabled:text-indigo-300 disabled:border-indigo-300"
+    >
+      Submit your answers</router-link
     >
   </div>
 </template>
 
 <script setup lang="ts">
 import { useQuizStore } from "@/stores/useQuizStore";
-import axios from "axios";
 import { storeToRefs } from "pinia";
 import { reactive, ref } from "vue";
 
@@ -73,6 +75,7 @@ const { answeredCounter, questionNumber, selectedAnswer } = storeToRefs(
 const url = "https://opentdb.com/api.php?amount=10&encode=url3986";
 const fetchQuiz = async () => {
   try {
+    quizStore.$reset();
     const res = await fetch(url);
     const quizResults = await res.json();
     console.log(res);
@@ -93,8 +96,10 @@ function getIncorrectAnswers(index: number): string[] {
 }
 
 const allAnswers = Array(10);
+const correctAnswers = Array(10);
 for (let i = 0; i < allAnswers.length; i++) {
   allAnswers[i] = [...getIncorrectAnswers(i), getCorrectAnswer(i)];
+  correctAnswers[i] = [getCorrectAnswer(i)];
 }
 
 interface quizResponse {
