@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView, useRoute } from "vue-router";
+const route = useRoute();
+route.name == "home";
 </script>
 
 <template>
-  <div class="h-screen">
+  <div class="h-screen grid">
     <header class="md:mt-4 md:mb-4">
-      <h1 class="md:text-4xl lg:mb-4 text-indigo-800 font-bold">Trivia Quiz</h1>
+      <h1
+        class="md:text-4xl lg:mb-4 text-indigo-800 font-bold"
+        :class="{ huge: route.name === 'home' }"
+      >
+        Trivia Quiz
+      </h1>
       <hr />
     </header>
-    <RouterView />
+    <RouterView class="row-span-6" />
   </div>
 </template>
 
@@ -40,5 +47,8 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+.huge {
+  @apply text-6xl lg:text-9xl;
 }
 </style>
