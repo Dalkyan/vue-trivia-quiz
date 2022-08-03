@@ -20,14 +20,15 @@
         <p>{{ decodeURIComponent(questionsArray[index]) }}</p>
         <p class="flex-center gap-2">
           <span v-if="isCorrectArray[index]"> ✅ </span>
-          <span v-else-if="!isCorrectArray[index]"
-            >❌
-            <!-- {{ decodeURIComponent(correctAnswers[index]) }} --> </span
-          ><span :class="{ wrong: !isCorrectArray[index] }">{{ decodeURIComponent(answer) }}</span>
-          <span v-if="!isCorrectArray[index]">{{decodeURIComponent(correctAnswers[index])}}</span>
+          <span v-else-if="!isCorrectArray[index]">❌</span
+          ><span :class="{ wrong: !isCorrectArray[index] }">{{
+            decodeURIComponent(answer)
+          }}</span>
+          <span v-if="!isCorrectArray[index]">{{
+            decodeURIComponent(correctAnswers[index])
+          }}</span>
         </p>
       </details>
-      >
     </details>
     <router-link
       class="rounded-2xl self-center m-2 p-2 border-2 text-lg border-indigo-800 bg-orange-500 text-indigo-800"

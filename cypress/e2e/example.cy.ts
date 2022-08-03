@@ -21,7 +21,7 @@ describe("Opens the app, selects one answer for each question and submits the an
   });
   it("At 10th question picks 4th answer and is not able to click next", () => {
     cy.get("button").eq(3).click();
-    cy.get("button").contains("Next").should("have.class", "disabled")
+    cy.get("button").contains("Next").should("contain.class", "disabled")
   });
   it("Is able to click submit answers and goes to summaryView", () => {
     cy.get("a").contains("Submit").click();
