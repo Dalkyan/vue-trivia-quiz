@@ -25,3 +25,7 @@
     margin: auto;
     max-height: 100vh;
   }
+  /* transitions */
+  .fade-enter-from, .fade-leave-to{
+    opacity: 0;
+  }

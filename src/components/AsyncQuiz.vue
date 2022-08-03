@@ -10,13 +10,17 @@
           :style="progressBar(answeredCounter)"
         ></div>
       </div>
-      <h2 class="text-xl">Question number {{ questionNumber }}:</h2>
     </div>
-    <div>
-      <h3 class="text-xl lg:text-2xl m-2 lg:m-6">
-        {{ decodeURIComponent(array[questionNumber - 1].question) }}
-      </h3>
-    </div>
+    <transition name="fade" mode="out-in">
+      <div class="min-h-max overflow-hidden" :key="questionNumber">
+        <h2 class="text-xl">Question number {{ questionNumber }}:</h2>
+
+        <div>
+          <h3 class="text-xl lg:text-2xl m-2 lg:m-6">
+            {{ decodeURIComponent(array[questionNumber - 1].question) }}
+          </h3>
+        </div>
+      
     <div class="flex-center flex-col flex-wrap">
       <div
         class="flex-center w-10/12"
@@ -32,6 +36,8 @@
         </button>
       </div>
     </div>
+</div>
+    </transition>
     <div class="flex-center mt-8">
       <button
         class="uppercase px-2 rounded-l-full border-2 bg-indigo-500 text-orange-300 hover:bg-indigo-800"

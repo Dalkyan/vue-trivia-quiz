@@ -1,5 +1,5 @@
 <template>
-  <div class="summary flex-center flex-col">
+  <main class="summary flex-center flex-col">
     <h2>Here goes summary</h2>
     <div class="place-self-center w-1/2 bg-indigo-200 rounded-full h-2.5 mb-4">
       <div
@@ -8,7 +8,7 @@
       ></div>
     </div>
     <h3>{{ percentageCounter }}% correct</h3>
-  </div>
+  </main>
 </template>
 <script setup lang="ts">
 import { useQuizStore } from "@/stores/useQuizStore";
