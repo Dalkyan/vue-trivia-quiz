@@ -6,7 +6,7 @@ describe("My First Test", () => {
     cy.contains("h1", "Trivia Quiz");
   });
 });
-describe("Check summery when haven't played", () => {
+describe("Check summary when haven't played", () => {
   it("visits the summaryView url", () => {
     cy.visit("/summary");
     cy.get("h2").should("contain.text", "No results to show");

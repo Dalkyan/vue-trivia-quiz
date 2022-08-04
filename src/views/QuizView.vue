@@ -14,4 +14,8 @@
 <script setup lang="ts">
 import AsyncQuiz from "@/components/AsyncQuiz.vue";
 </script>
-<style></style>
+<style>
+main {
+  max-width: 100vw;
+}
+</style>

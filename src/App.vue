@@ -23,35 +23,4 @@ route.name == "home";
 header {
   line-height: 1.5;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-.huge {
-  @apply text-6xl lg:text-9xl;
-}
-.text-shadow {
-  text-shadow: 0 1px rgb(249 115 22);
-}
 </style>
