@@ -6,6 +6,12 @@ describe("My First Test", () => {
     cy.contains("h1", "Trivia Quiz");
   });
 });
+describe("Check summery when haven't played", () => {
+  it("visits the summaryView url", () => {
+    cy.visit("/summary");
+    cy.get("h2").should("contain.text", "No results to show");
+  });
+});
 
 describe("Opens the app, selects one answer for each question and submits the answers", () => {
   it("visits the app root url and clicks the start button", () => {
@@ -19,12 +25,16 @@ describe("Opens the app, selects one answer for each question and submits the an
       cy.get("button").contains("Next").click();
     }
   });
-  it("At 10th question picks 4th answer and is not able to click next", () => {
-    cy.get("button").eq(3).click();
-    cy.get("button").contains("Next").should("contain.class", "disabled")
+  it("At 10th question picks 2nd answer and is not able to click next", () => {
+    cy.get("button").eq(1).click();
+    cy.get("button").contains("Next").should("contain.class", "disabled");
   });
   it("Is able to click submit answers and goes to summaryView", () => {
     cy.get("a").contains("Submit").click();
+    cy.url().should("contain", "summary");
+  });
+  it("Displays summaryView and clicks to show results", () => {
+    cy.get("h2").contains("score").click();
     cy.url().should("contain", "summary");
   });
 });

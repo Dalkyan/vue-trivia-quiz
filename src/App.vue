@@ -8,14 +8,12 @@ route.name == "home";
   <div class="h-screen grid grid-rows-[min-content_auto]">
     <header class="md:mt-4">
       <h1
-          class="text-xl md:text-4xl lg:mb-4 text-indigo-800 font-bold"
-          :class="{ huge: route.name === 'home' }"
-        ><router-link to="/"
-        >
-          Trivia Quiz
-        </router-link
-      ></h1>
-      <hr class="text-orange-500" />
+        class="text-xl md:text-4xl mb-1 lg:mb-4 text-indigo-800 font-bold text-shadow"
+        :class="{ huge: route.name === 'home' }"
+      >
+        <router-link to="/"> Trivia Quiz </router-link>
+      </h1>
+      <hr class="border-t-orange-500 border-b-indigo-800 border-4" />
     </header>
     <RouterView />
   </div>
@@ -52,5 +50,8 @@ nav a:first-of-type {
 }
 .huge {
   @apply text-6xl lg:text-9xl;
+}
+.text-shadow {
+  text-shadow: 0 1px rgb(249 115 22);
 }
 </style>
