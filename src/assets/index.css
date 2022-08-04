@@ -7,14 +7,33 @@
         @apply text-center font-semibold
     }
     .btn{ 
-    @apply p-2 m-1 w-1/2 rounded border-indigo-800 border-4  hover:bg-indigo-800 hover:text-orange-500;
+    @apply p-2 m-1 w-1/2 md:text-3xl rounded border-indigo-800 border-4 shadow-sm shadow-orange-800  hover:bg-indigo-800 hover:text-orange-500;
     }
     .flex-center{
       @apply flex items-center justify-center;
     }
+    .quiz{
+      @apply flex flex-col m-0 content-between
+    }
   }
 
+  *{
+    transition: all 200ms ease-in-out;
+  }
   body{
     max-width: 1024px;
     margin: auto;
+    max-height: 100vh;
   }
+  a, button{
+    user-select: none;
+  }
+  /* transitions */
+  .fade-enter-from, .fade-leave-to{
+    opacity: 0;
+  }
+  .grow-enter-from, .grow-leave-to{
+    transform: scale(0);
+    opacity: 0;
+  }
+ 
