@@ -23,7 +23,7 @@
   body{
     max-width: 1024px;
     margin: auto;
-    max-height: 100vh;
+    max-height: 90vh;
   }
   a, button{
     user-select: none;
