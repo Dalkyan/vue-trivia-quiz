@@ -13,7 +13,7 @@
     </div>
     <transition name="fade" mode="out-in">
       <div class="min-h-max overflow-hidden" :key="questionNumber">
-        <h2 class="text-xl">Question number {{ questionNumber }}:</h2>
+        <h2 class="text-l md:text-xl">Question number {{ questionNumber }}:</h2>
 
         <div>
           <h3 class="text-xl lg:text-2xl m-2 lg:m-6">
@@ -39,28 +39,30 @@
         </div>
       </div>
     </transition>
-    <div class="flex-center mt-8">
+    <div class="nav mt-8">
       <button
-        class="uppercase px-2 rounded-l-full border-2 bg-indigo-500 text-orange-300 hover:bg-indigo-800"
+        class="prev uppercase px-2 rounded-l-full border-2 lg:text-3xl bg-indigo-500 text-orange-300 hover:bg-indigo-800"
         :class="{ disabled: questionNumber <= 1 }"
         @click="questionNumber--"
       >
         Prev
       </button>
-      <template v-for="(i, index) in array.length" :key="index">
-        <button
-          class="rounded-lg w-8 md:m-2 border-2 bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
-          :class="{
-            orange: selectedAnswer[index],
-            'active-question': questionNumber === index + 1,
-          }"
-          @click="questionNumber = index + 1"
-        >
-          {{ i }}
-        </button>
-      </template>
+      <div class="btns">
+        <template v-for="(i, index) in array.length" :key="index">
+          <button
+            class="btns rounded-lg w-8 md:m-2 border-2 lg:text-3xl bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
+            :class="{
+              orange: selectedAnswer[index],
+              'active-question': questionNumber === index + 1,
+            }"
+            @click="questionNumber = index + 1"
+          >
+            {{ i }}
+          </button>
+        </template>
+      </div>
       <button
-        class="uppercase px-2 rounded-r-full border-2 bg-indigo-500 text-orange-300 hover:bg-indigo-800"
+        class="next uppercase px-2 rounded-r-full border-2 lg:text-3xl bg-indigo-500 text-orange-300 hover:bg-indigo-800"
         :class="{ disabled: questionNumber >= array.length }"
         @click="questionNumber++"
       >
@@ -71,7 +73,7 @@
       to="/summary"
       @click="submitAnswers()"
       :class="{ disabled: answeredCounter < 10 }"
-      class="rounded-2xl self-center m-2 p-2 border-2 text-lg border-indigo-800 bg-orange-500 text-indigo-800"
+      class="rounded-2xl self-center m-2 p-2 border-2 text-lg lg:text-3xl border-indigo-800 bg-orange-500 text-indigo-800"
     >
       Submit your answers</router-link
     >
@@ -161,15 +163,39 @@ const progressBar = (counter: number) => {
 
 <style scoped>
 .disabled {
-  opacity: 0.5;
+  opacity: 0.2;
   pointer-events: none;
 }
-
 .orange {
   @apply bg-orange-500 hover:bg-orange-800;
 }
-
 .active-question {
   @apply border-indigo-800 scale-125;
+}
+
+/* grid for navigation buttons to prevent exceeding width on small screens; */
+.prev {
+  grid-area: prev;
+}
+.next {
+  grid-area: next;
+}
+.btns {
+  grid-area: btns;
+}
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: min-content min-content;
+  gap: 0px 0px;
+  grid-template-areas:
+    "prev next"
+    "btns btns";
+}
+
+@media (min-width: 640px) {
+  .nav {
+    @apply flex flex-row justify-center items-center;
+  }
 }
 </style>
