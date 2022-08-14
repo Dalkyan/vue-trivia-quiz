@@ -18,7 +18,7 @@
   }
 
   *{
-    transition: all 200ms ease-in-out;
+    transition: transform, opacity, font-size 200ms ease-in-out;
   }
   body{
     max-width: 1024px;

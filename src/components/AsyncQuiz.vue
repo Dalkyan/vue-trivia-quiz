@@ -17,19 +17,25 @@
 
         <div>
           <h3 class="text-xl lg:text-2xl m-2 lg:m-6">
-            {{ decodeURIComponent(array[questionNumber - 1].question) }}
+            {{
+              decodeURIComponent(array[decrease(questionNumber, 1)].question)
+            }}
           </h3>
         </div>
         <div class="flex-center flex-col flex-wrap">
           <div
             class="flex-center w-10/12"
-            v-for="(oneAnswer, index) in allAnswers[questionNumber - 1]"
+            v-for="(oneAnswer, index) in allAnswers[
+              decrease(questionNumber, 1)
+            ]"
             :key="index"
           >
             <button
               class="btn w-3/4 rounded-full ml-0"
               :class="{
-                orange: index + 1 === selectedAnswer[questionNumber - 1],
+                orange:
+                  increase(index, 1) ===
+                  selectedAnswer[decrease(questionNumber, 1)],
               }"
               @click="selectAnswer(index)"
             >
@@ -53,9 +59,9 @@
             class="btns rounded-lg w-8 md:m-2 border-2 lg:text-3xl bg-indigo-200 hover:bg-indigo-800 hover:text-indigo-100 hover:-translate-y-1"
             :class="{
               orange: selectedAnswer[index],
-              'active-question': questionNumber === index + 1,
+              'active-question': questionNumber === increase(index, 1),
             }"
-            @click="questionNumber = index + 1"
+            @click="questionNumber = increase(index, 1)"
           >
             {{ i }}
           </button>
@@ -132,27 +138,34 @@ for (let i = 0; i < allAnswers.length; i++) {
 }
 correctAnswers.value = localCorrectAnswers;
 
-function selectAnswer(number: number) {
+const selectAnswer = (number: number) => {
   console.log(allAnswers[questionNumber.value - 1][number]);
   if (!selectedAnswer.value[questionNumber.value - 1]) {
     quizStore.incrementCounter();
   }
+  selectedAnswer.value[questionNumber.value - 1] = number + 1;
   console.log(
     " For question number:",
     questionNumber.value,
     " selected answer is:",
-    (selectedAnswer.value[questionNumber.value - 1] = number + 1)
+    selectedAnswer.value[questionNumber.value - 1]
   );
   myAnswers.value[questionNumber.value - 1] =
     allAnswers[questionNumber.value - 1][number];
-}
-function submitAnswers() {
+};
+const submitAnswers = () => {
   console.log("Answers submitted");
   console.log(decodeURIComponent(myAnswers.value.toString()));
   console.log("Correct answers:");
   console.log(decodeURIComponent(correctAnswers.value.toString()));
   console.log(decodeURIComponent(localCorrectAnswers.toString()));
-}
+};
+const increase = (number: number, howMuch: number) => {
+  return number + howMuch;
+};
+const decrease = (number: number, howMuch: number) => {
+  return number - howMuch;
+};
 //progressBar
 const progressBar = (counter: number) => {
   return reactive({
