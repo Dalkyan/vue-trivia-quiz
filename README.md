@@ -1,5 +1,6 @@
 # vue-trivia-quiz
 
-Simply Trivia API app made with Vue 3, Pinia and Tailwind.
+Trivia API app made with Vue 3, Pinia and Tailwind.
 
+You can play it [here](https://vue-trivia-quiz.netlify.app/).
 
