@@ -7,13 +7,13 @@
           class="place-self-center w-1/2 bg-indigo-200 rounded-full h-2.5 mb-4"
         >
           <div
-            class="bg-orange-500 h-2.5 rounded-full"
+            class="bg-orange-500 h-2.5 rounded-full transition-all"
             :style="progressBar(answeredCounter)"
           ></div>
         </div>
       </div>
       <transition name="fade" mode="out-in">
-        <div class="min-h-max overflow-hidden" :key="questionNumber">
+        <div class="min-h-max overflow-hidden transition" :key="questionNumber">
           <h2 class="text-l md:text-xl">
             Question number {{ questionNumber }}:
           </h2>
@@ -82,7 +82,7 @@
         to="/summary"
         @click="submitAnswers()"
         :class="{ disabled: answeredCounter < 10 }"
-        class="rounded-2xl self-center m-2 p-2 border-2 text-lg lg:text-3xl border-indigo-800 bg-orange-500 text-indigo-800"
+        class="rounded-2xl self-center m-2 p-2 border-2 text-lg lg:text-3xl border-indigo-800 bg-orange-500 text-indigo-800 hover:text-orange-500 hover:bg-indigo-800"
       >
         Submit your answers</router-link
       >
@@ -118,8 +118,8 @@ const {
 } = storeToRefs(useQuizStore());
 //async function to fetch data from API
 let isWorking = true;
-// const url = "https://opentdb.com/api.php?amount=10&encode=url3986";
-const url = "https://opentdb.com/";
+const url = "https://opentdb.com/api.php?amount=10&encode=url3986";
+const url2 = "https://opentdb.com/";
 const fetchQuiz = async () => {
   try {
     quizStore.$reset();
@@ -127,51 +127,6 @@ const fetchQuiz = async () => {
     const quizResults = await res.json();
     console.log(res);
     console.log(quizResults.results);
-
-    const getCorrectAnswer = (index: number): string => {
-      return array.value[index].correct_answer;
-    };
-    const getIncorrectAnswers = (index: number): string[] => {
-      return array.value[index].incorrect_answers;
-    };
-    const getQuestion = (index: number): string => {
-      return array.value[index].question;
-    };
-    for (let index = 0; index < array.value.length; index++) {
-      questionsArray.value[index] = getQuestion(index);
-    }
-
-    const allAnswers = Array(10);
-    const localCorrectAnswers = Array(10);
-    for (let i = 0; i < allAnswers.length; i++) {
-      allAnswers[i] = [...getIncorrectAnswers(i), getCorrectAnswer(i)];
-      localCorrectAnswers[i] = [getCorrectAnswer(i)];
-    }
-    correctAnswers.value = localCorrectAnswers;
-
-    const selectAnswer = (number: number) => {
-      console.log(allAnswers[questionNumber.value - 1][number]);
-      if (!selectedAnswer.value[questionNumber.value - 1]) {
-        quizStore.incrementCounter();
-      }
-      selectedAnswer.value[questionNumber.value - 1] = number + 1;
-      console.log(
-        " For question number:",
-        questionNumber.value,
-        " selected answer is:",
-        selectedAnswer.value[questionNumber.value - 1]
-      );
-      myAnswers.value[questionNumber.value - 1] =
-        allAnswers[questionNumber.value - 1][number];
-    };
-    const submitAnswers = () => {
-      console.log("Answers submitted");
-      console.log(decodeURIComponent(myAnswers.value.toString()));
-      console.log("Correct answers:");
-      console.log(decodeURIComponent(correctAnswers.value.toString()));
-      console.log(decodeURIComponent(localCorrectAnswers.toString()));
-    };
-
     return quizResults.results;
   } catch (error) {
     console.error("Couldn't fetch this request");
@@ -181,6 +136,50 @@ const fetchQuiz = async () => {
 };
 const array = ref(await fetchQuiz()) ?? [];
 console.log(array.value);
+
+const getCorrectAnswer = (index: number): string => {
+  return array.value[index].correct_answer;
+};
+function getIncorrectAnswers(index: number): string[] {
+  return array.value[index].incorrect_answers;
+}
+const getQuestion = (index: number): string => {
+  return array.value[index].question;
+};
+for (let index = 0; index < array.value.length; index++) {
+  questionsArray.value[index] = getQuestion(index);
+}
+
+const allAnswers = Array(10);
+const localCorrectAnswers = Array(10);
+for (let i = 0; i < allAnswers.length; i++) {
+  allAnswers[i] = [...getIncorrectAnswers(i), getCorrectAnswer(i)];
+  localCorrectAnswers[i] = [getCorrectAnswer(i)];
+}
+correctAnswers.value = localCorrectAnswers;
+
+const selectAnswer = (number: number) => {
+  console.log(allAnswers[questionNumber.value - 1][number]);
+  if (!selectedAnswer.value[questionNumber.value - 1]) {
+    quizStore.incrementCounter();
+  }
+  selectedAnswer.value[questionNumber.value - 1] = number + 1;
+  console.log(
+    " For question number:",
+    questionNumber.value,
+    " selected answer is:",
+    selectedAnswer.value[questionNumber.value - 1]
+  );
+  myAnswers.value[questionNumber.value - 1] =
+    allAnswers[questionNumber.value - 1][number];
+};
+const submitAnswers = () => {
+  console.log("Answers submitted");
+  console.log(decodeURIComponent(myAnswers.value.toString()));
+  console.log("Correct answers:");
+  console.log(decodeURIComponent(correctAnswers.value.toString()));
+  console.log(decodeURIComponent(localCorrectAnswers.toString()));
+};
 
 const increase = (number: number, howMuch: number) => {
   return number + howMuch;

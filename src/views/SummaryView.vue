@@ -2,7 +2,9 @@
   <main class="summary flex-center flex-col" v-if="myAnswers[0] != ''">
     <h2 class="text-indigo-800 text-xl">
       Your score:
-      <span :class="{ grow: percentageCounter == correctAnswersCounter * 10 }"
+      <span
+        class="transition-all"
+        :class="{ grow: percentageCounter == correctAnswersCounter * 10 }"
         >{{ percentageCounter }}%</span
       >
       correct
@@ -11,7 +13,7 @@
       class="place-self-center w-1/2 bg-indigo-200 border-indigo-800 rounded-full h-2.5 mb-4"
     >
       <div
-        class="bg-orange-500 h-2.5 rounded-full"
+        class="bg-orange-500 h-2.5 rounded-full transition-all"
         :style="progressBar(counter)"
       ></div>
     </div>
@@ -25,7 +27,10 @@
         answers
       </h2>
       <transition name="grow">
-        <div v-if="show" class="grid grid-cols-2 place-content-start grid-">
+        <div
+          v-if="show"
+          class="md:transition-all grid grid-cols-2 place-content-start grid-"
+        >
           <div
             class="flex flex-col justify-between m-1 border-orange-500 border-4 rounded place-self-stretch"
             v-for="(answer, index) in myAnswers"
@@ -53,7 +58,7 @@
       </transition>
     </div>
     <router-link
-      class="rounded-2xl self-center m-2 p-2 border-2 text-lg shadow-sm shadow-orange-800 border-indigo-800 bg-orange-500 text-indigo-800 hover:bg-indigo-800 hover:text-orange-500 hover:border-orange-500"
+      class="transition rounded-2xl self-center m-2 p-2 border-2 text-lg shadow-sm shadow-orange-800 border-indigo-800 bg-orange-500 text-indigo-800 hover:bg-indigo-800 hover:text-orange-500 hover:border-orange-500"
       to="/"
       >Play again?</router-link
     >
@@ -61,7 +66,7 @@
   <main v-else-if="myAnswers[0] == ''" class="flex-center flex-col">
     <h2>No results to show, because you haven't played the game yet!</h2>
     <router-link
-      class="rounded-2xl self-center m-2 p-2 border-2 text-lg shadow-sm shadow-orange-800 border-indigo-800 bg-orange-500 text-indigo-800 hover:bg-indigo-800 hover:text-orange-500 hover:border-orange-500"
+      class="transition rounded-2xl self-center m-2 p-2 border-2 text-lg shadow-sm shadow-orange-800 border-indigo-800 bg-orange-500 text-indigo-800 hover:bg-indigo-800 hover:text-orange-500 hover:border-orange-500"
       to="/"
       >Play the game</router-link
     >
@@ -93,12 +98,12 @@ if (correctAnswersCounter.value > 0) {
     counter.value++;
     if (counter.value == correctAnswersCounter.value)
       clearInterval(incrementInterval);
-  }, 100);
+  }, 150);
   const incrementPercentage = setInterval(() => {
     percentageCounter.value++;
     if (percentageCounter.value == correctAnswersCounter.value * 10)
       clearInterval(incrementPercentage);
-  }, 10);
+  }, 15);
 }
 //progressBar
 const progressBar = (counter: number) => {
